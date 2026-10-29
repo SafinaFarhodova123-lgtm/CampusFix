@@ -1,3 +1,10 @@
+# Team Members
+
+- **Safina Farhodova**
+- **Maftuna Makhkamova**
+
+**Event:** LION Code Challenge — Penn State Abington Tech Week 2026
+
 # CampusFix
 
 **See it. Report it. Fix it. Get rewarded.**
@@ -120,3 +127,16 @@ The map currently uses a **simplified, hand-traced layout** (`geo_source = 'sche
 - Issue lists are fetched per campus and filtered client-side (fine for one campus; add server-side pagination for many).
 - Any signed-in user can view issue photos (needed for duplicate checking); restrict the storage policy if photos may contain sensitive content.
 - Penn State Go integration is a future step; the app is a standard web app that can be linked or embedded once `frame-ancestors` is relaxed for that host.
+
+
+# Artificial Intelligence (AI) Usage Disclosure
+
+CampusFix was developed by **Safina Farhodova and Maftuna Makhkamova** with extensive assistance from artificial intelligence tools, including **Claude AI and ChatGPT**.
+
+AI was used to assist with the application's architecture, code generation, user interface design, database development, debugging, testing, documentation, and deployment preparation.
+
+The **CampusFix demonstration video was also created using AI-assisted tools**, including narration, voiceover generation, video editing, transitions, and captions.
+
+Our team guided the project by defining its goals, selecting features, providing design feedback, and reviewing the final results. We also manually tested the deployed application to verify essential functionality, including user authentication, issue reporting, data persistence, and facilities staff workflows.
+
+We acknowledge that AI played a significant role in creating both the application and demonstration video. This project demonstrates how human creativity, decision-making, and AI-assisted development can work together to build a functional prototype within a limited timeframe.
