@@ -13,9 +13,8 @@ const ok = (n, c, x = '') => R.push(`${c ? 'PASS' : 'FAIL'} ${n}${x ? ' — ' + 
 const STUBS = `
 create role anon nologin; create role authenticated nologin;
 grant usage on schema public to anon, authenticated;
-alter default privileges in schema public grant all on tables to anon, authenticated;
-alter default privileges in schema public grant all on sequences to anon, authenticated;
-alter default privileges in schema public grant execute on functions to anon, authenticated;
+-- No default table grants: the migrations must grant everything the app needs explicitly
+-- (some Supabase projects don't auto-expose new tables). Functions keep Postgres' default EXECUTE.
 create schema auth;
 create table auth.users (id uuid primary key default gen_random_uuid(), email text, raw_user_meta_data jsonb default '{}'::jsonb);
 create function auth.uid() returns uuid language sql stable as $$ select nullif(current_setting('request.jwt.claim.sub', true), '')::uuid $$;
@@ -29,7 +28,7 @@ grant usage on schema storage to anon, authenticated;
 grant all on storage.objects to authenticated;
 `
 await db.exec(STUBS)
-for (const f of ['20261029000001_schema.sql', '20261029000002_functions.sql', '20261029000003_rls_and_storage.sql', '20261029000004_rewards_admin_notifications.sql', '../seed.sql']) {
+for (const f of ['20261029000001_schema.sql', '20261029000002_functions.sql', '20261029000003_rls_and_storage.sql', '20261029000004_rewards_admin_notifications.sql', '20261029000005_explicit_grants.sql', '../seed.sql']) {
   let sql = readFileSync(`${ROOT}/${f.startsWith('..') ? f.slice(3) : 'migrations/' + f}`, 'utf8')
   sql = sql.replace(/create extension if not exists pgcrypto;/, '') // gen_random_uuid() is core since PG13
   try {

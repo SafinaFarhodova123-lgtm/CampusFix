@@ -11,3 +11,4 @@ supabase/.temp
 *.tsbuildinfo
 test-results
 playwright-report
+!.env.production

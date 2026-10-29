@@ -96,11 +96,11 @@ git push -u origin main
 
 ### 3. Vercel
 
-1. [vercel.com/new](https://vercel.com/new) → import the GitHub repo (framework: Vite is detected; build `npm run build`, output `dist`).
-2. **Environment variables**: `VITE_SUPABASE_URL`, `VITE_SUPABASE_ANON_KEY`, and `VITE_ALLOW_DEMO=false` (so a missing config shows an error instead of silently running demo mode).
-3. Deploy. `vercel.json` rewrites every route to `index.html`, so deep links work on refresh.
+1. [vercel.com/new](https://vercel.com/new) → **Import** the `campusfix` GitHub repo. Vercel detects Vite (build `npm run build`, output `dist`) — keep the defaults.
+2. **Deploy.** No environment variables are needed: `.env.production` already points at the CampusFix Supabase project. Its two values are public by design (project URL + publishable key); Row Level Security protects the data. To use a different project, override `VITE_SUPABASE_URL` / `VITE_SUPABASE_ANON_KEY` in Vercel.
+3. Every push to `main` redeploys automatically. `vercel.json` adds security headers and rewrites routes to `index.html`, so deep links work on refresh.
 
-To publish a **demo-only** site without Supabase, leave the Supabase variables empty and set `VITE_ALLOW_DEMO=true`.
+`VITE_ALLOW_DEMO=false` in production means a build without Supabase settings shows a clear error instead of silently running demo mode.
 
 ### Production checklist
 
